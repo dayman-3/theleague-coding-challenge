@@ -26,7 +26,7 @@ Open http://localhost:9000/
 npm run test
 ```
 ## Instructions
-After each step, please make commits so we see your working.
+After each step, please make commits so we can see your working.
 
 ---
 ### Step 1 - Create Block Chain
