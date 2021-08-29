@@ -1,5 +1,5 @@
 # The League Coding Challenge - Blockchain React Demo
-For this challenge, we are making block chain demo in react to test your skills on with typescript and react. Don't worry, if you don't know any react or typescript, another part of this test is to see how well you pick up something new. Some code has already been done for you, and can serve as a good reference point, especially when creating the block tests.
+For this challenge, we are making a block chain demo in react, this is to test your skills on typescript and react. Don't worry, if you don't know any react or typescript, apart of this test is to see how well you pick up something new. Some code has already been done for you, and can serve as a good reference point, especially when creating the block tests in step 3.
 
 What is a block chain? *Blockchain is a system of recording information in a way that makes it difficult or impossible to change, hack, or cheat the system.*
 
@@ -35,7 +35,7 @@ Please complete the functions in the `src/components/BlockChain/index.tsx`
 - onDelete
 - onHash
 
-You'll also have to fix the render so that multiple blocks can display on the screen. Note that hashes a linked (hence *block chain*), so the hash of block 1 should be the previous hash of block 2, and the hash of block 2 should be the previous of block 3 and so on. 
+You'll also have to fix the return render so that multiple blocks can display on the screen.Currently it is only one. Note that the hashes are linked (hence *block chain*), so the hash of block 1 should be the previous hash of block 2, and the hash of block 2 should be the previous of block 3 and so on. 
 
 Tests for the Block Chain are provided, and given that you've done everything correctly, they should pass.
 
