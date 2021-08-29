@@ -35,7 +35,7 @@ Please complete the functions in the `src/components/BlockChain/index.tsx`
 - onDelete
 - onHash
 
-You'll also have to fix the return render so that multiple blocks can display on the screen.Currently it is only one. Note that the hashes are linked (hence *block chain*), so the hash of block 1 should be the previous hash of block 2, and the hash of block 2 should be the previous of block 3 and so on. Feel free to add more functions to this fill.
+You'll also have to fix the return render so that multiple blocks can display on the screen.Currently it is only one. Note that the hashes are linked (hence *block chain*), so the hash of block 1 should be the previous hash of block 2, and the hash of block 2 should be the previous of block 3 and so on. You'll most likely need to add more functions to fix the render. Figure out a way you can go about this.
 
 Tests for the Block Chain are provided, and given that you've done everything correctly, they should pass.
 
