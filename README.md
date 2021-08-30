@@ -5,7 +5,7 @@ What is a block chain? *Blockchain is a system of recording information in a way
 
 A good demo of this, can be found here: https://andersbrownworth.com/blockchain/blockchain
 
-However we also want to change it up a bit. We want a similar product using typescript and react, as well as some stylistic changes. A skeleton of the code has been provided aswell as a set step by step instructions on how to get started.
+However we also want to change it up a bit. We want a similar product using typescript and react, as well as some stylistic changes. A skeleton of the code has been provided aswell as a set of step by step instructions on how to get started.
 
 For submission, please create a repository on your preferred platform, then email the repository link.
 
