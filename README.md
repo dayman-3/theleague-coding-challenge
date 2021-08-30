@@ -61,3 +61,11 @@ An essential part of coding is also testing your own code, please complete the t
 - Delete is called correctly
 - Mining works correctly
 - Changing data effects hash
+
+---
+### Resources
+Here are some resources that might come in handy when trying to use the technologies required for this challange:
+
+- [React](https://reactjs.org/docs/getting-started.html 'React Docs')
+- [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html 'TS Docs')
+- [React Testing Library](https://testing-library.com/docs/ 'RTL Docs')
