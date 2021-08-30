@@ -50,6 +50,8 @@ Tests for the Block Chain are provided, and given that you've done everything co
 - The block should have border radius of 24px
 - The blocks in the block chain should be aligned with the center
 - The blocks should be 24px apart from each other
+- The block should have a shadow (any will do)
+- The block should 2px solid black border
 
 ---
 ### Step 3 - Block Testing

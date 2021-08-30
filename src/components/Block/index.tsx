@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import sha256 from 'sha256';
+import React, { useEffect, useState } from 'react';
 
+import sha256 from 'sha256';
 import styles from './styles.module.css';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 /**
  * Block Component
  * Has all functionality for a block within a block chain.
- * No should be no need to change this, however please feel free if need to.
+ * You might need to add some things in here for step 2.
  * @param block number of this block
  * @param previousHash previous block's hash
  * @param hash the hash of the current block
