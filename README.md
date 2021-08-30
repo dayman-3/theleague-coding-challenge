@@ -7,7 +7,12 @@ A good demo of this, can be found here: https://andersbrownworth.com/blockchain/
 
 However we also want to change it up a bit. We want a similar product using typescript and react, as well as some stylistic changes. A skeleton of the code has been provided aswell as a set of step by step instructions on how to get started.
 
-For submission, please create a repository on your preferred platform, then email the repository link.
+Please create your own git repository to keep track of your work.
+For submission, just email the repository link back to us.
+
+If you have any issues, please email me at dylan@theleagueagency.com.au
+
+Goodluck!
 
 ## Setup
 Install all packages using npm
@@ -26,7 +31,7 @@ Open http://localhost:9000/
 npm run test
 ```
 ## Instructions
-After each step, please make commits so we can see your working.
+To keep track of your work, please setup a git and commit after each step.
 
 ---
 ### Step 1 - Create Block Chain
