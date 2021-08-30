@@ -24,6 +24,7 @@ const BlockChain = () => {
   /**
    * Complete this function
    * onDelete should delete the last block
+   * Should only need to pass to the last block
    */
   const onDelete = () => {
     
@@ -42,7 +43,7 @@ const BlockChain = () => {
    * Fix the return statement
    * Currently we only show one block, this is incorrect.
    * We need to be able to show multiple blocks as a block chain should.
-   * You'll most likely need to add more functions to fix the render. Figure out a way you can go about this.
+   * You'll most likely need to add more functions or states to fix the render. Figure out a way you can go about this.
    * Total Blocks is also incorrect.
    */
   return (
