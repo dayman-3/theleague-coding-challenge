@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import Block from '../Block';
+import Block, { Props } from '../Block';
+// TODO if necessary, don't export and fix tsconfig.json
 
 import styles from './styles.module.css';
 
@@ -12,13 +13,24 @@ import styles from './styles.module.css';
 const BlockChain = () => {
   // Contains all hashes
   const [hashes, setHashes] = useState<string[]>([]); 
+  const [blockArray, updateBlocks] = useState<JSX.Element[]>([]);
+  let blockCount = 0;
+  
+
 
   /**
    * Complete this function
    * onAdd should create a new block
    */
   const onAdd = () => {
-
+    let newProps: Props = {
+      block: blockCount++,
+      previousHash: undefined,
+      hash: "dog",
+      onHash: onHash
+    }
+    let newBlock = <Block {...newProps} />
+    updateBlocks(blockArray.concat([newBlock]))
   }
 
   /**
@@ -39,6 +51,11 @@ const BlockChain = () => {
     setHashes([hash]);
   }
 
+  // const blockArray = [
+  //   // <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>,
+  //   <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
+  // ]
+
   /**
    * Fix the return statement
    * Currently we only show one block, this is incorrect.
@@ -50,7 +67,8 @@ const BlockChain = () => {
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: 0</div>
-      <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
+      {blockArray}
+      {/* <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/> */}
       <button type="button" onClick={() => onAdd()}>Add Block</button>
     </div> 
   );

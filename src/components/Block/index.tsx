@@ -67,4 +67,5 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
   )
 };
 
+export { Props }
 export default Block;
