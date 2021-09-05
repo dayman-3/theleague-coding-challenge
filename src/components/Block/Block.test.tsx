@@ -71,7 +71,20 @@ it("Delete is called correctly", () => {
  * The text 'Valid' should also be in the document
  */
 it("Mining works correctly", () => {
+    const onHash = jest.fn()
+    const onDelete = jest.fn()
+    const { getByText } = render(
+        <Block
+            block={1}
+            hash={""}
+            onHash={onHash}
+            onDelete={onDelete}
+        />
+    )
 
+    userEvent.click(getByText('Mine'));
+
+    
 });
 
 /**
