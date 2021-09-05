@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Block, { Props } from '../Block';
 // TODO if necessary, don't export and fix tsconfig.json
@@ -16,25 +16,35 @@ const BlockChain = () => {
 
   // let firstBlock = <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
   const [blockArray, updateBlocks] = useState<JSX.Element[]>([]);
-  const [blockCount, setBlockCount] = useState<number>(0); 
+  const [blockCount, updateBlockCount] = useState<number>(0); 
+
+  useEffect(() => {
+    updateBlockCount(blockArray.length);
+  })
 
   /**
    * Complete this function
    * onAdd should create a new block
    */
   const onAdd = () => {
+    // updateBlockCount(blockArray.length);
+
     let newHash = '0'.repeat(64);
     setHashes(hashes.concat([newHash]));
-
     let newProps: Props = {
       block: blockCount+1,
-      previousHash: (blockCount > 0 ? hashes[blockCount] : newHash),
+      previousHash: (blockCount > 0 ? hashes[blockCount] : newHash), // TODO check if necessary
       hash: newHash,
+      onDelete: onDelete,
+      // onDelete: (blockCount > 0 ? onDelete : () => {}),
       onHash: onHash
     };
-    setBlockCount(blockCount+1);
     let newBlock = <Block key={blockCount} {...newProps} />;
     updateBlocks([...blockArray, newBlock]);
+    updateBlockCount(blockCount+1);
+
+    console.log("blockCount = " + blockCount)
+    // console.log ("ADDED: " + blockArray.map(i =>`(${i.key}, ${i.props.block})`));
   }
 
   /**
@@ -43,8 +53,14 @@ const BlockChain = () => {
    * Should only need to pass to the last block
    */
   const onDelete = () => {
-    
-  }
+
+    updateBlockCount(blockCount-1);
+    updateBlocks(blockArray.splice(0, blockCount));
+    setHashes(hashes.splice(0, blockCount))
+
+    console.log("blockCount = " + blockCount)
+    // console.log ("DELETED: " + blockArray.map(i =>`(${i.key}, ${i.props.block})`));
+  } // TODO what if one block in chain
 
   /**
    * Complete this function
@@ -78,7 +94,7 @@ const BlockChain = () => {
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
-      <div>Total Blocks: {blockCount}</div>
+      <div>Total Blocks: {blockCount}</div> {/* TODO this off-by-one thing is a bit sketchy */}
       {/* {blockArray.map((b, i) => <div key={i}>{b}</div>)} */}
       {blockArray}
       {/* <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/> */}
