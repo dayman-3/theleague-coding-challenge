@@ -28,13 +28,12 @@ const BlockChain = () => {
    */
   const onAdd = () => {
     // updateBlockCount(blockArray.length);
-
     let newHash = '0'.repeat(64);
     setHashes(hashes.concat([newHash]));
     let newProps: Props = {
       block: blockCount+1,
       previousHash: (blockCount > 0 ? hashes[blockCount] : newHash), // TODO check if necessary
-      hash: newHash,
+      hash: hashes[blockCount],
       onDelete: onDelete,
       // onDelete: (blockCount > 0 ? onDelete : () => {}),
       onHash: onHash
@@ -69,7 +68,7 @@ const BlockChain = () => {
    */
   const onHash = (_block: number, hash: string) => {
     let newHashes = [...hashes];
-    newHashes[_block] = hash;
+    newHashes[_block-1] = hash;
     setHashes([...newHashes]);
   }
 
@@ -95,8 +94,16 @@ const BlockChain = () => {
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: {blockCount}</div> {/* TODO this off-by-one thing is a bit sketchy */}
-      {/* {blockArray.map((b, i) => <div key={i}>{b}</div>)} */}
-      {blockArray}
+      {blockArray.map((b, i) => 
+        <Block
+          key={i}
+          block={i+1}
+          hash={hashes[i]}
+          onDelete={onDelete}
+          onHash={onHash}
+        />
+      )}
+      {/* {blockArray} */}
       {/* <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/> */}
       <button type="button" onClick={() => onAdd()}>Add Block</button>
     </div> 
