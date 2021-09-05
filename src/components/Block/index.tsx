@@ -40,8 +40,14 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
     setNonce(i)
   };
 
+  const validityStyle = () => {
+    return {
+      background: (hash && isValidHash(hash)) ? "lightgreen" : "#ff9c9c"
+    } // hash && is to handle the undefined type in union
+  }
+
   return (
-    <div className={styles.block}>
+    <div className={styles.block} style={validityStyle()}>
       <div>
         Block <span>{block}</span>
       </div>
