@@ -13,8 +13,6 @@ import styles from './styles.module.css';
 const BlockChain = () => {
   // Contains all hashes
   const [hashes, setHashes] = useState<string[]>([]); 
-
-  // let firstBlock = <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
   const [blockArray, updateBlocks] = useState<JSX.Element[]>([]);
   const [blockCount, updateBlockCount] = useState<number>(0); 
 
@@ -27,7 +25,6 @@ const BlockChain = () => {
    * onAdd should create a new block
    */
   const onAdd = () => {
-    // updateBlockCount(blockArray.length);
     let newHash = '0'.repeat(64);
     setHashes(hashes.concat([newHash]));
     let newProps: Props = {
@@ -35,15 +32,11 @@ const BlockChain = () => {
       previousHash: (blockCount > 0 ? hashes[blockCount] : newHash), // TODO check if necessary
       hash: hashes[blockCount],
       onDelete: onDelete,
-      // onDelete: (blockCount > 0 ? onDelete : () => {}),
       onHash: onHash
     };
     let newBlock = <Block key={blockCount} {...newProps} />;
     updateBlocks([...blockArray, newBlock]);
     updateBlockCount(blockCount+1);
-
-    console.log("blockCount = " + blockCount)
-    // console.log ("ADDED: " + blockArray.map(i =>`(${i.key}, ${i.props.block})`));
   }
 
   /**
@@ -52,13 +45,9 @@ const BlockChain = () => {
    * Should only need to pass to the last block
    */
   const onDelete = () => {
-
     updateBlockCount(blockCount-1);
     updateBlocks(blockArray.slice(0, blockCount-1));
     setHashes(hashes.slice(0, blockCount-1))
-
-    console.log("blockCount = " + blockCount)
-    // console.log ("DELETED: " + blockArray.map(i =>`(${i.key}, ${i.props.block})`));
   } // TODO what if one block in chain
 
   /**
@@ -93,8 +82,6 @@ const BlockChain = () => {
           onHash={onHash}
         />
       )}
-      {/* {blockArray} */}
-      {/* <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/> */}
       <button type="button" onClick={() => onAdd()}>Add Block</button>
     </div> 
   );
