@@ -15,15 +15,35 @@ import Block from './';
  * onHash is called and the hash change is reflected in the component
  */
 it('Hash is set on load', () => {
-  
-});
+  const onHash = jest.fn()
+  const onDelete = jest.fn()
+  const { getByText } = render(
+    <Block 
+      block={1}
+      hash={""}
+      onHash={onHash}
+      onDelete={onDelete}
+    />
+  );
+  expect(onHash).toHaveBeenCalledTimes(1);
+}); // TODO check hash is changed in component
 
 /**
  * Shows not valid text
  * On render, the text 'Not Valid' should be in the document as the hash is not valid
  */
 it("Shows not valid text", () => {
-
+    const onHash = jest.fn()
+    const onDelete = jest.fn()
+    const { getByText } = render(
+        <Block
+            block={1}
+            hash={""}
+            onHash={onHash}
+            onDelete={onDelete}
+        />
+    )
+    expect(getByText("Not Valid")).toBeInTheDocument();
 });
 
 /**
@@ -31,7 +51,18 @@ it("Shows not valid text", () => {
  * We need to make sure that when clicking on delete, the delete function is called
  */
 it("Delete is called correctly", () => {
-
+    const onHash = jest.fn()
+    const onDelete = jest.fn()
+    const { getByText } = render(
+        <Block
+            block={1}
+            hash={""}
+            onHash={onHash}
+            onDelete={onDelete}
+        />
+    )
+    userEvent.click(getByText('Delete'));
+    expect(onDelete).toBeCalled()
 });
 
 /**
