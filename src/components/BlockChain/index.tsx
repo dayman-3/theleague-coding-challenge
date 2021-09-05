@@ -13,24 +13,28 @@ import styles from './styles.module.css';
 const BlockChain = () => {
   // Contains all hashes
   const [hashes, setHashes] = useState<string[]>([]); 
-  const [blockArray, updateBlocks] = useState<JSX.Element[]>([]);
-  let blockCount = 0;
-  
 
+  // let firstBlock = <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
+  const [blockArray, updateBlocks] = useState<JSX.Element[]>([]);
+  const [blockCount, setBlockCount] = useState<number>(0); 
 
   /**
    * Complete this function
    * onAdd should create a new block
    */
   const onAdd = () => {
+    let newHash = '0'.repeat(64);
+    setHashes(hashes.concat([newHash]));
+
     let newProps: Props = {
-      block: blockCount++,
-      previousHash: undefined,
-      hash: "dog",
+      block: blockCount+1,
+      previousHash: (blockCount > 0 ? hashes[blockCount] : newHash),
+      hash: newHash,
       onHash: onHash
-    }
-    let newBlock = <Block {...newProps} />
-    updateBlocks(blockArray.concat([newBlock]))
+    };
+    setBlockCount(blockCount+1);
+    let newBlock = <Block key={blockCount} {...newProps} />;
+    updateBlocks([...blockArray, newBlock]);
   }
 
   /**
@@ -48,13 +52,21 @@ const BlockChain = () => {
    * E.g., block 1 should update its corresponding index in the state 'hashes'
    */
   const onHash = (_block: number, hash: string) => {
-    setHashes([hash]);
+    let newHashes = [...hashes];
+    newHashes[_block] = hash;
+    setHashes([...newHashes]);
   }
 
   // const blockArray = [
   //   // <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>,
   //   <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
   // ]
+
+  // let firstBlock = <Block key={0} block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
+  // blockCount = 1;
+  // blockArray.push(firstBlock)
+  // TODO check if it's good/bad practice to manually update the state variable
+  // also done with blockCount
 
   /**
    * Fix the return statement
@@ -66,7 +78,8 @@ const BlockChain = () => {
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
-      <div>Total Blocks: 0</div>
+      <div>Total Blocks: {blockCount}</div>
+      {/* {blockArray.map((b, i) => <div key={i}>{b}</div>)} */}
       {blockArray}
       {/* <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/> */}
       <button type="button" onClick={() => onAdd()}>Add Block</button>
