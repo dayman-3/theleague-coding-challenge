@@ -54,8 +54,8 @@ const BlockChain = () => {
   const onDelete = () => {
 
     updateBlockCount(blockCount-1);
-    updateBlocks(blockArray.splice(0, blockCount));
-    setHashes(hashes.splice(0, blockCount))
+    updateBlocks(blockArray.slice(0, blockCount-1));
+    setHashes(hashes.slice(0, blockCount-1))
 
     console.log("blockCount = " + blockCount)
     // console.log ("DELETED: " + blockArray.map(i =>`(${i.key}, ${i.props.block})`));
@@ -71,18 +71,7 @@ const BlockChain = () => {
     newHashes[_block-1] = hash;
     setHashes([...newHashes]);
   }
-
-  // const blockArray = [
-  //   // <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>,
-  //   <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
-  // ]
-
-  // let firstBlock = <Block key={0} block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
-  // blockCount = 1;
-  // blockArray.push(firstBlock)
-  // TODO check if it's good/bad practice to manually update the state variable
-  // also done with blockCount
-
+  
   /**
    * Fix the return statement
    * Currently we only show one block, this is incorrect.
@@ -93,13 +82,14 @@ const BlockChain = () => {
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
-      <div>Total Blocks: {blockCount}</div> {/* TODO this off-by-one thing is a bit sketchy */}
+      <div>Total Blocks: {blockCount}</div>
       {blockArray.map((b, i) => 
         <Block
           key={i}
           block={i+1}
           hash={hashes[i]}
-          onDelete={onDelete}
+          previousHash={(i > 0 ? hashes[i-1] : '0'.repeat(64))}
+          onDelete={(i == blockArray.length-1 ? onDelete : null)}
           onHash={onHash}
         />
       )}
